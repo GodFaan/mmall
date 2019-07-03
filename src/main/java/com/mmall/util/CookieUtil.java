@@ -14,11 +14,11 @@ import javax.servlet.http.*;
 @Slf4j
 public class CookieUtil {
     //设置cookie的作用域，以自定义的网址为结束
-    private final static String COOKIE_DOMAIN = ".itgodfan.com";
+    private final static String COOKIE_DOMAIN = "itgodfan.com";//值得注意的是，在使用tomcat8.5 以后的版本时，不能加"."，否则出错
     private final static String COOKIE_NAME = "mmall_login_token";
 
     /**
-     * @Description:读取cookie中的值
+     * @Description:读取cookie中的值，cookie的存储方式是以键值对的形式存储的
      * @Author GodFan
      * @Date 2019/7/3
      * @Version V1.0
