@@ -15,6 +15,11 @@ public class Const {
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
 
+    public interface RedisCacheExtime {
+        //设置redis缓存的过期时间为30分钟
+        int REDIS_SESSION_EXTIME = 60 * 30;
+    }
+
     /***
      * @Description: 通过一个内部的接口将常量进行分组，避免使用枚举造成繁重的消耗
      * @Author: GodFan
