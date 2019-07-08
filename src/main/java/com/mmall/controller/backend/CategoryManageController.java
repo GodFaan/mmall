@@ -48,22 +48,23 @@ public class CategoryManageController {
      */
     public ServerResponse addCategory(HttpServletRequest httpServletRequest, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
 //        User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        if (StringUtils.isEmpty(loginToken)) {
-            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.String2Obj(userJsonStr, User.class);
-        if (user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
-        }
-        //校验是否是管理员
-        if (iUserService.checkAdminRole(user).isSuccess()) {
-            return iCategoryService.addCategory(categoryName, parentId);
-        } else {
-            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
-        }
-
+//        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+//        if (StringUtils.isEmpty(loginToken)) {
+//            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.String2Obj(userJsonStr, User.class);
+//        if (user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
+//        }
+//        //校验是否是管理员
+//        if (iUserService.checkAdminRole(user).isSuccess()) {
+//            return iCategoryService.addCategory(categoryName, parentId);
+//        } else {
+//            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
+//        }
+        //将所有的用户登录与权限判断交给拦截器
+        return iCategoryService.addCategory(categoryName, parentId);
     }
 
     @RequestMapping("set_category_name.do")
@@ -75,22 +76,24 @@ public class CategoryManageController {
      */
     public ServerResponse setCategoryName(HttpServletRequest httpServletRequest, Integer categoryId, String categoryName) {
 //        User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        if (StringUtils.isEmpty(loginToken)) {
-            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.String2Obj(userJsonStr, User.class);
-        if (user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
-        }
-        //校验是否是管理员
-        if (iUserService.checkAdminRole(user).isSuccess()) {
-            //更新categoryName
-            return iCategoryService.updateCategoryName(categoryId, categoryName);
-        } else {
-            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
-        }
+//        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+//        if (StringUtils.isEmpty(loginToken)) {
+//            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.String2Obj(userJsonStr, User.class);
+//        if (user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
+//        }
+//        //校验是否是管理员
+//        if (iUserService.checkAdminRole(user).isSuccess()) {
+//            //更新categoryName
+//            return iCategoryService.updateCategoryName(categoryId, categoryName);
+//        } else {
+//            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
+//        }
+        //将所有的用户登录与权限判断交给拦截器
+        return iCategoryService.updateCategoryName(categoryId, categoryName);
     }
 
     @RequestMapping("get_category.do")
@@ -102,22 +105,24 @@ public class CategoryManageController {
      */
     public ServerResponse getChildrenParallelCategory(HttpServletRequest httpServletRequest, @RequestParam(value = "categoryId", defaultValue = "0") int categoryId) {
 //        User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        if (StringUtils.isEmpty(loginToken)) {
-            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.String2Obj(userJsonStr, User.class);
-        if (user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
-        }
-        //校验是否是管理员
-        if (iUserService.checkAdminRole(user).isSuccess()) {
-            //查询子节点的category信息，并且不递归，保持平级
-            return iCategoryService.getChildrenParallelCategory(categoryId);
-        } else {
-            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
-        }
+//        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+//        if (StringUtils.isEmpty(loginToken)) {
+//            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.String2Obj(userJsonStr, User.class);
+//        if (user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
+//        }
+//        //校验是否是管理员
+//        if (iUserService.checkAdminRole(user).isSuccess()) {
+//            //查询子节点的category信息，并且不递归，保持平级
+//            return iCategoryService.getChildrenParallelCategory(categoryId);
+//        } else {
+//            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
+//        }
+        //将所有的用户登录与权限判断交给拦截器
+        return iCategoryService.getChildrenParallelCategory(categoryId);
     }
 
     @RequestMapping("get_deep_category.do")
@@ -129,22 +134,24 @@ public class CategoryManageController {
      */
     public ServerResponse getCategoryAndDeepChildrenCategory(HttpServletRequest httpServletRequest, @RequestParam(value = "categoryId", defaultValue = "0") int categoryId) {
 //        User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        if (StringUtils.isEmpty(loginToken)) {
-            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.String2Obj(userJsonStr, User.class);
-        if (user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
-        }
-        //校验是否是管理员
-        if (iUserService.checkAdminRole(user).isSuccess()) {
-            //查询当前节点的ID和递归子节点的ID
-            return iCategoryService.selectCategoryAndChildrenById(categoryId);
-        } else {
-            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
-        }
+//        String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+//        if (StringUtils.isEmpty(loginToken)) {
+//            return ServerResponse.createByErrorMessage("当前用户未登录，无法获取当前用户的信息！");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.String2Obj(userJsonStr, User.class);
+//        if (user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录!");
+//        }
+//        //校验是否是管理员
+//        if (iUserService.checkAdminRole(user).isSuccess()) {
+//            //查询当前节点的ID和递归子节点的ID
+//            return iCategoryService.selectCategoryAndChildrenById(categoryId);
+//        } else {
+//            return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限！");
+//        }
+        //将所有的用户登录与权限判断交给拦截器
+        return iCategoryService.selectCategoryAndChildrenById(categoryId);
     }
 
 }

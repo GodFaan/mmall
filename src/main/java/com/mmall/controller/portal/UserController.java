@@ -37,7 +37,7 @@ public class UserController {
      * @Author: GodFan
      * @Date: 2019/6/19
      */
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login.do", method = RequestMethod.GET)
     /***
      * 自动将返回值序列化成json
      */

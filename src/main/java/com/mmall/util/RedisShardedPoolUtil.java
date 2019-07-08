@@ -53,6 +53,19 @@ public class RedisShardedPoolUtil {
         }
         return result;
     }
+    public static Long setnx(String key, String value) {
+        ShardedJedis jedis = null;
+        Long result = null;
+        try {
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.setnx(key, value);
+        } catch (Exception e) {
+            log.error("setnx key:{} value:{} erro", key, value, e);
+            RedisShardedPool.returnBrokenResource(jedis);
+            return result;
+        }
+        return result;
+    }
 
     /**
      * @Description:设置键值对的过时时间，输入的时间的单位是秒
