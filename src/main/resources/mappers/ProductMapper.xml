@@ -212,8 +212,9 @@
         </if>
 
     </select>
+    <!-- 使用行级锁（悲观锁for update）-->
     <select id="selectStockByProductId" parameterType="java.lang.Integer" resultType="int">
-        selsect stock
+        select stock
         from mmall_product
         where id=#{id}
         for update
