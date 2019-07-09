@@ -4,11 +4,8 @@ import java.math.BigDecimal;
 
 /**
  * @program: mmall
-<<<<<<< HEAD
  * @description: 前台展示的商品细节视图对象，view object
-=======
  * @description: 商品细节视图对象，view object
->>>>>>> fe93ebe90c2c29b99ff8e9f1a3530a900eebd7af
  * @author: GodFan
  * @create: 2019-06-20 22:06
  **/

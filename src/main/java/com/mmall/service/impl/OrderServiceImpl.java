@@ -613,9 +613,16 @@ public class OrderServiceImpl implements IOrderService {
         return ServerResponse.createByErrorMessage("订单不存在");
     }
 
+    /**
+     * @Description:关单操作就是将数据库库中商品的库存信息改变，以及将关单的订单的状态码进行改变
+     * @Author GodFan
+     * @Date 2019/7/9
+     * @Version V1.0
+     **/
     @Override
     public void closeOrder(int hour) {
         Date closeDateTime = DateUtils.addHours(new Date(), -hour);
+        //找到那些没有支付的订单，判断他们的下单时间距离现在是否过了指定时长，如果过时则要准备删除订单操作
         List<Order> orderList = orderMapper.selectOrderStatusByCreateTime(Const.OrderStatusEnum.NO_PAY.getCode(), DateTimeUtil.dateToStr(closeDateTime));
         for (Order order : orderList) {
             List<OrderItem> orderItemList = orderItemMapper.getByOrderNo(order.getOrderNo());
@@ -628,6 +635,7 @@ public class OrderServiceImpl implements IOrderService {
                 }
                 Product product = new Product();
                 product.setId(orderItem.getProductId());
+                //将失效的订单商品数量再加到库存里面
                 product.setStock(stock + orderItem.getQuantity());
                 productMapper.updateByPrimaryKeySelective(product);
             }
