@@ -88,11 +88,11 @@ public class CloseOrderTask {
         boolean getLock = false;
         try {
             if (getLock = lock.tryLock(0, 5, TimeUnit.SECONDS)) {
-                log.info("Redisson获取到按分布式锁：{}，ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
+                log.info("Redisson获取到按分布式锁：{}，ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK,Thread.currentThread().getName());
                 int hour = Integer.parseInt(PropertiesUtil.getProperty("close.oredr.task.time.hour","2"));
-                iOrderService.closeOrder(hour);
+//                iOrderService.closeOrder(hour);
             } else {
-                log.info("Redisson分布式没有获取到锁;{},TreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
+                log.info("Redisson分布式没有获取到锁;{},TreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK,Thread.currentThread().getName());
             }
         } catch (InterruptedException e) {
             log.info("Redisson分布式锁获取异常", e);
