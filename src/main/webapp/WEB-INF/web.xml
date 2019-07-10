@@ -33,23 +33,23 @@
      </filter-mapping>
  -->
     <!-- 重置session时间的filter -->
-    <!--<filter>
+    <filter>
         <filter-name>sessionExpireFilter</filter-name>
         <filter-class>com.mmall.controller.common.SessionExpireFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>sessionExpireFilter</filter-name>
         <url-pattern>*.do</url-pattern>
-    </filter-mapping>-->
-
-    <filter>
-        <filter-name>springSessionRepositoryFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>springSessionRepositoryFilter</filter-name>
-        <url-pattern>*.do</url-pattern>
     </filter-mapping>
+
+    <!--    <filter>-->
+    <!--        <filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--    </filter>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--        <url-pattern>*.do</url-pattern>-->
+    <!--    </filter-mapping>-->
     <!--负责监听web容器的启动与关闭事件的监听器-->
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
@@ -71,10 +71,10 @@
         <!-->=0时容器在启动时会初始化这个servlet，1代表优先级的启动顺序-->
         <load-on-startup>1</load-on-startup>
     </servlet>
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>dispatcher</servlet-name>-->
-<!--        <url-pattern>*.do</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>dispatcher</servlet-name>-->
+    <!--        <url-pattern>*.do</url-pattern>-->
+    <!--    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
