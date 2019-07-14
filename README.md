@@ -1,4 +1,4 @@
-# 基于 SSM 的前后端分离项目
+# 基于 SSM 的前后端分离项目（慕课网happymall项目跟做）
 
 **开发环境：** IntelliJ IDEA + maven + git + Centos + Vsftpd
 
@@ -563,3 +563,4 @@ public class AuthorityInterceptor implements HandlerInterceptor {
 
 # Spring Schedule + Redis 分布式锁构建分布式任务调度
 
+# 注:说明文档引用自：https://github.com/xiehanghang/mmall.git
