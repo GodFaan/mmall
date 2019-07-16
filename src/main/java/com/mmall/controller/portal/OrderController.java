@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * @Description：
+ * @Description：与订单有关的操作，包括订单的创建、订单的获取、订单的支付、订单的详情等
  * @Author：GodFan
  * @Date2019/6/25 21:00
  * @Version V1.0

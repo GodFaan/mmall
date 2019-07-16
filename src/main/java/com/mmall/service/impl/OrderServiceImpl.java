@@ -46,7 +46,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * @Description：
+ * @Description：与订单相关的操作
  * @Author：GodFan
  * @Date2019/6/25 19:39
  * @Version V1.0
@@ -473,6 +473,7 @@ public class OrderServiceImpl implements IOrderService {
                     //根据订单号生成路径，根据路径生成二维码
                     String qrPath = String.format(path + "/qr-%s.png", response.getOutTradeNo());
                     String qrFileNmae = String.format("qr-%s.png", response.getOutTradeNo());
+                    //根据传入的参数生成二维码信息
                     ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
                     //根据文件名和路径上传到服务器上
                     File targetFile = new File(path, qrFileNmae);

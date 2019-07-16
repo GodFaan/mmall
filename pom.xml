@@ -98,17 +98,22 @@
             <!--<scope>runtime</scope>-->
         </dependency>
 
+        <!--将日志设为1.1.6之后的版本的原因是在彩后的版本 可以设置日志最大的存量，这样就保证在指定的日期内磁盘不会因为日志过多而发生崩盘的现象
 
+        正所谓，菩提本无树，明镜亦非台，本来无一物，何处惹尘埃！
+        时间万物终归是一抔黄土，看开了就淡了，看淡了，就好了
+        过好现在，过好明天，日子是过以后，不是过以前！
+        阿弥陀佛！-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.2</version>
+            <version>1.1.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.1.2</version>
+            <version>1.1.6</version>
             <scope>compile</scope>
         </dependency>
 

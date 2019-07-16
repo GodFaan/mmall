@@ -54,5 +54,6 @@
             <!--<mvc:exclude-mapping path="/admin/user/login.do"/>-->
             <bean class="com.mmall.controller.common.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
+        <!--还需要顶一个了拦截器防止订单的重复提交，这对于实际开发是很重要的-->
     </mvc:interceptors>
 </beans>
