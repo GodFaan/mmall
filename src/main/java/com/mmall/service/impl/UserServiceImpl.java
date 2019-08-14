@@ -43,6 +43,21 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess("登录成功", user);
     }
 
+    /**
+     * @Description:查找用户名是否被注册使用
+     * @Author GodFan
+     * @Date 2019/8/2
+     * @Version V1.0
+     **/
+    @Override
+    public ServerResponse checkloginName(String username) {
+        int resultCount = userMapper.checkUername(username);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMessage("您的用户名合理，可以注册使用！");
+        }
+        return ServerResponse.createBySuccess("注册名称已存在，请更换新的名称！");
+    }
+
     @Override
     public ServerResponse<String> register(User user) {
         ServerResponse validResponse = this.checkValid(user.getUsername(), Const.USERNAME);

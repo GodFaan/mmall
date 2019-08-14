@@ -55,6 +55,22 @@ public class UserController {
     }
 
     /**
+     * @Description:在注册时，判断输入的用户名是否合理
+     * @Author GodFan
+     * @Date 2019/8/2
+     * @Version V1.0
+     **/
+    @RequestMapping(value = "checkloginName.do", method = RequestMethod.GET)
+    /***
+     * 自动将返回值序列化成json
+     */
+    @ResponseBody
+    public Object checkloginName(String username) {
+        ServerResponse<User> response = iUserService.checkloginName(username);
+        return response;
+    }
+
+    /**
      * @Description:退出登录
      * @Author: GodFan
      * @Date: 2019/6/19

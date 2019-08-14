@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册页面</title>
+</head>
+<body>
+<form id="myForm">
+    <label for="username">username:<input type="text" id="username"/><input type="text" id="username-info"/></label>
+    <label for="password">password:<input type="text" id="password"/></label>
+</form>
+<script>
+    $("#username").on("blur",function(){//这一句就是在鼠标离开对姓名的输入之后就进行的验证操作
+        var username=$("#username").val();
+        if(username!=undefined&&username.length>0){
+            $.ajax({
+                type:"post",//type可以为post也可以为get
+                url:"http://localhost:9080/user/checkloginName.do",
+                data:{"username":username},//这行不能省略，如果没有数据向后台提交也要写成data:{}的形式
+                dataType:"json",//这里要注意如果后台返回的数据不是json格式，那么就会进入到error:function(data){}中
+                success:function(data){
+                    $("#username-info").css("display","block");
+                    if(data.availiable==="0"){
+                        $("#username-info").css("color","green");
+                    }else{
+                        $("#username-info").css("color","red");
+                    }
+                    $("#username-info").val(data.info);
+                },
+                error:function(data){
+                    alert("用户名提交出现了错误！");
+                }
+            });
+        }else{
+            alert("用户名不能为空！")
+            return false;
+        }
+    })
+</script>
+</body>
+</html>

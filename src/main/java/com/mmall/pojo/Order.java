@@ -34,11 +34,11 @@ public class Order {
     private Date sendTime;
 
     private Date endTime;
-
+    //过时关单
     private Date closeTime;
-
+    //创建订单时间
     private Date createTime;
-
+    //更新订单时间
     private Date updateTime;
 
 //    public Order(Integer id, Long orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType, Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
